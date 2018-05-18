@@ -1,0 +1,339 @@
+.input-text__elem {
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1; }
+  .input-text__elem * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0; }
+  .input-text__elem input {
+    height: 38px;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    font-family: "Open Sans";
+    font-size: 15px;
+    line-height: 20px;
+    border-radius: 2px;
+    background-color: #FFFFFF;
+    padding-left: 10px;
+    font-weight: 100;
+    border: 1px solid #bebebe;
+    transition: all .2s ease-in-out; }
+    .input-text__elem input.invalid {
+      animation: shake .5s linear;
+      -webkit-animation: shake .5s linear; }
+    .input-text__elem input::placeholder {
+      opacity: 0.5;
+      color: #222222;
+      font-weight: 100; }
+    .input-text__elem input:placeholder-shown {
+      border: 1px solid #bebebe; }
+    .input-text__elem input:focus {
+      outline: none;
+      color: #222222; }
+      .input-text__elem input:focus ~ span.icon img {
+        transform: rotateY(360deg); }
+      .input-text__elem input:focus ~ .focus-border-onfocus:before,
+      .input-text__elem input:focus ~ .focus-border-onfocus:after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: #222; }
+      .input-text__elem input:focus ~ .focus-border-onfocus:after {
+        top: auto;
+        bottom: 0;
+        left: 0; }
+      .input-text__elem input:focus ~ .focus-border i:first-child:before,
+      .input-text__elem input:focus ~ .focus-border i:first-child:after {
+        height: 100%;
+        transition: 0.4s;
+        transition-delay: 0.3s; }
+    .input-text__elem input:not([value=""]):not(:focus) ~ span.icon:after {
+      content: '';
+      position: absolute;
+      border-radius: 0 2px 2px 0;
+      border: 1px solid #bebebe;
+      height: 36px;
+      width: 49px;
+      right: -15px;
+      top: -9px; }
+    .input-text__elem input:focus ~ span.animated-placeholder,
+    .input-text__elem input:not([value=""]):not(:focus) ~ span.animated-placeholder {
+      top: -16px;
+      font-size: 12px;
+      line-height: 17px;
+      left: 0; }
+      .input-text__elem input:focus ~ span.animated-placeholder.error-placeholder,
+      .input-text__elem input:not([value=""]):not(:focus) ~ span.animated-placeholder.error-placeholder {
+        opacity: 1;
+        color: #FC3251; }
+    .input-text__elem input ~ .focus-border:before,
+    .input-text__elem input ~ .focus-border:after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: var(--x);
+      width: var(--width);
+      height: 1px;
+      background-color: #222;
+      animation: borderMoveBackwards 0.3s ease-out forwards;
+      animation-delay: 0.2s; }
+    .input-text__elem input ~ .focus-border-onfocus:before,
+    .input-text__elem input ~ .focus-border-onfocus:after {
+      display: none; }
+    .input-text__elem input ~ .focus-border i:last-child:before,
+    .input-text__elem input ~ .focus-border i:last-child:after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      right: var(--width);
+      width: 0;
+      height: 1px;
+      background-color: #222; }
+    .input-text__elem input ~ .focus-border:after {
+      top: auto;
+      bottom: 0;
+      left: var(--x); }
+    .input-text__elem input ~ .focus-border i:last-child:after {
+      top: auto;
+      bottom: 0;
+      right: var(--width); }
+    .input-text__elem input ~ .focus-border i:first-child:before,
+    .input-text__elem input ~ .focus-border i:first-child:after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      width: 1px;
+      height: 0;
+      background-color: #222;
+      transition: 0.2s; }
+    .input-text__elem input ~ .focus-border i:first-child:after {
+      left: auto;
+      right: 0;
+      top: auto;
+      bottom: 0; }
+    .input-text__elem input ~ .focus-border.border-move:before,
+    .input-text__elem input ~ .focus-border.border-move:after {
+      animation: borderMove 0.3s ease-in forwards; }
+    .input-text__elem input ~ .focus-border i:last-child:before,
+    .input-text__elem input ~ .focus-border i:last-child:after {
+      width: var(--x);
+      animation: borderMoveInvBackwards 0.3s ease-out forwards;
+      animation-delay: 0.2s; }
+    .input-text__elem input ~ .focus-border.border-move i:last-child:before,
+    .input-text__elem input ~ .focus-border.border-move i:last-child:after {
+      animation: borderMoveInv 0.3s ease-in forwards; }
+    .input-text__elem input ~ .focus-border-onfocus.visible:before,
+    .input-text__elem input ~ .focus-border-onfocus.visible:after {
+      display: block !important; }
+
+@keyframes borderMove {
+  0% {
+    width: 0;
+    background-color: #8787e4; }
+  50% {
+    background-color: #8787e4; }
+  100% {
+    width: var(--width);
+    background-color: #222; } }
+
+@keyframes borderMoveInv {
+  0% {
+    width: 0;
+    background-color: #8787e4; }
+  50% {
+    background-color: #8787e4; }
+  100% {
+    width: var(--x);
+    background-color: #222; } }
+
+@keyframes borderMoveBackwards {
+  100% {
+    width: 0;
+    background-color: #8787e4; }
+  30% {
+    background-color: #222; }
+  0% {
+    width: var(--width);
+    background-color: #222; } }
+
+@keyframes borderMoveInvBackwards {
+  100% {
+    width: 0;
+    background-color: #8787e4; }
+  30% {
+    background-color: #222; }
+  0% {
+    width: var(--x);
+    background-color: #222; } }
+
+@keyframes borderMoveError {
+  0% {
+    width: 0;
+    background-color: #FC3251; }
+  50% {
+    background-color: #FC3251; }
+  100% {
+    width: var(--width);
+    background-color: black; } }
+
+@keyframes borderMoveInvError {
+  0% {
+    width: 0;
+    background-color: #FC3251; }
+  50% {
+    background-color: #FC3251; }
+  100% {
+    width: var(--x);
+    background-color: black; } }
+
+@keyframes borderMoveBackwardsError {
+  100% {
+    width: 0;
+    background-color: #FC3251; }
+  30% {
+    background-color: black; }
+  0% {
+    width: var(--width);
+    background-color: black; } }
+
+@keyframes borderMoveInvBackwardsError {
+  100% {
+    width: 0;
+    background-color: #FC3251; }
+  30% {
+    background-color: black; }
+  0% {
+    width: var(--x);
+    background-color: black; } }
+    .input-text__elem input:disabled {
+      background-color: #efefef;
+      opacity: 0.5;
+      color: #222222; }
+    .input-text__elem input:required {
+      outline: none;
+      box-shadow: none; }
+    .input-text__elem input.error {
+      border: 1px solid #FC3251; }
+      .input-text__elem input.error ~ .focus-border:before,
+      .input-text__elem input.error ~ .focus-border:after {
+        background-color: black;
+        animation: borderMoveBackwardsError 0.3s ease-out forwards;
+        animation-delay: 0.2s; }
+      .input-text__elem input.error ~ .focus-border i:first-child:before,
+      .input-text__elem input.error ~ .focus-border i:first-child:after {
+        background-color: black; }
+      .input-text__elem input.error:focus ~ .focus-border i:first-child:before,
+      .input-text__elem input.error:focus ~ .focus-border i:first-child:after {
+        background-color: black; }
+      .input-text__elem input.error ~ .focus-border.border-move:before,
+      .input-text__elem input.error ~ .focus-border.border-move:after {
+        animation: borderMoveError 0.3s ease-in forwards; }
+      .input-text__elem input.error ~ .focus-border i:last-child:before,
+      .input-text__elem input.error ~ .focus-border i:last-child:after {
+        animation: borderMoveInvBackwardsError 0.3s ease-out forwards;
+        animation-delay: 0.2s;
+        background-color: black; }
+      .input-text__elem input.error ~ .focus-border.border-move i:last-child:before,
+      .input-text__elem input.error ~ .focus-border.border-move i:last-child:after {
+        animation: borderMoveInvError 0.3s ease-in forwards; }
+      .input-text__elem input.error:focus ~ .focus-border-onfocus:before,
+      .input-text__elem input.error:focus ~ .focus-border-onfocus:after {
+        background-color: black !important; }
+  .input-text__elem label {
+    position: absolute;
+    top: -16px;
+    font-size: 12px;
+    line-height: 17px;
+    opacity: 0.5;
+    color: #333;
+    display: block;
+    font-weight: 100;
+    letter-spacing: .25px;
+    margin-bottom: 1px; }
+    .input-text__elem label.error {
+      opacity: .75;
+      color: #FC3251; }
+  .input-text__elem span.error {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    font-size: 10px;
+    font-weight: 300;
+    line-height: 14px;
+    text-align: right;
+    color: #FC3251;
+    letter-spacing: .3px;
+    margin-top: 2px;
+    right: 0; }
+  .input-text__elem span.animated-placeholder {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+    left: 10px;
+    top: 9px;
+    transition: 0.2s ease all;
+    opacity: 0.5;
+    color: #222222;
+    font-weight: 100;
+    font-size: 15px;
+    line-height: 20px;
+    font-family: "Open Sans";
+    white-space: nowrap;
+    max-width: 93%;
+    overflow: hidden; }
+  .input-text__elem span.icon {
+    position: absolute;
+    right: 15px;
+    top: 9px; }
+    .input-text__elem span.icon img {
+      width: 20px;
+      height: 20px;
+      opacity: 1;
+      transition: .2s opacity ease, transform 1s;
+      position: relative;
+      z-index: 2;
+      transform-style: preserve-3d; }
+      .input-text__elem span.icon img:hover {
+        cursor: pointer;
+        opacity: .5; }
+  .input-text__elem.inline {
+    display: inline-block; }
+  .input-text__elem.inline:not(:last-child) {
+    margin-right: 20px; }
+
+@keyframes shake {
+  8%, 41% {
+    transform: translateX(-10px); }
+  25%, 58% {
+    transform: translateX(10px); }
+  75% {
+    transform: translateX(-5px); }
+  92% {
+    transform: translateX(5px); }
+  0%, 100% {
+    transform: translateX(0); } }
+  .input-text__elem:after {
+    content: '';
+    position: absolute;
+    background: #f4f6f9;
+    top: 1px;
+    right: 1px;
+    height: 36px;
+    width: 50px;
+    z-index: 0; }
+
+.input-text__elem:first-child {
+  margin-top: 20px !important; }
+
+.input-text__elem:last-child {
+  margin-bottom: 0 !important; }

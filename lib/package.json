@@ -1,0 +1,23 @@
+{
+  "name": "@accessdev/arc-ui-react",
+  "author": {
+    "name": "Access Development",
+    "url": "http://www.accessdevelopment.com"
+  },
+  "version": "1.1.2",
+  "main": "./index.js",
+  "keywords": [
+    "components",
+    "react",
+    "react-component",
+    "toolkit",
+    "access-development"
+  ],
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "moment": "^2.22.1",
+    "prop-types": "^15.6.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  }
+}

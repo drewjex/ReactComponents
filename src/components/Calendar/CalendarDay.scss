@@ -1,0 +1,108 @@
+$buttonHeight: 38px;
+$buttonWidth: 36px;
+$contentHeight: 36px;
+$contentWidth: $contentHeight;
+// colors
+$colorAccent: #4a90e2;
+$colorHoverBorder: #2a5280;
+$colorWhite: #fff;
+
+.CalendarDay {
+  background-color: transparent;
+  border: none;
+  border-top: 1px solid $colorWhite;
+  border-bottom: 1px solid $colorWhite;
+  cursor: pointer;
+  display: flex;
+  height: $buttonHeight;
+  padding: 0;
+  position: relative;
+  width: $buttonWidth;
+}
+
+.CalendarDay:disabled {
+  background-color: rgba(34, 34, 34, 0.07);
+  border-left: 1px solid $colorWhite;
+  border-radius: 2px;
+  border-right: 1px solid $colorWhite;
+  color: rgba(34, 34, 34, 0.3);
+  cursor: default;
+}
+
+.CalendarDay:focus {
+  outline: none; // fix for Chrome
+}
+
+.CalendarDay--hovered {
+  z-index: 2;
+}
+
+.CalendarDay--rangeStart::before,
+.CalendarDay--rangeEnd::before {
+  position: absolute;
+  content: '';
+  background-color: $colorAccent;
+  height: $contentHeight;
+  right: 0;
+  width: $contentWidth;
+  z-index: 1;
+  border-radius: 2px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.CalendarDay--rangeEnd::before {
+  left: 0;
+  right: auto;
+  border-radius: 2px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.CalendarDay--rangeMiddle {
+  background-color: $colorAccent;
+}
+
+.CalendarDay--padding {
+  height: $buttonHeight;
+  width: $buttonWidth;
+  cursor: default;
+}
+
+.CalendarDay-content {
+  align-items: center;
+  border-radius: 2px;
+  display: flex;
+  height: $contentHeight;
+  justify-content: center;
+  width: $contentWidth;
+  z-index: 1;
+}
+
+.CalendarDay-content--hovered {
+  box-shadow: 0 0 0 2px $colorHoverBorder;
+}
+
+.CalendarDay-content--rangeStart,
+.CalendarDay-content--rangeMiddle,
+.CalendarDay-content--rangeEnd {
+  background-color: $colorAccent;
+  color: $colorWhite;
+}
+
+.CalendarDay-content.is-today {
+  color: $colorAccent;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.CalendarDay-content--rangeStart.is-today,
+.CalendarDay-content--rangeMiddle.is-today,
+.CalendarDay-content--rangeEnd.is-today,
+.CalendarDay-content--chosen.is-today {
+  color: $colorWhite;
+}
+
+.CalendarDay-content--chosen {
+  background-color: $colorAccent;
+  color: $colorWhite;
+}

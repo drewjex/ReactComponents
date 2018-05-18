@@ -1,0 +1,481 @@
+$animationLength: .3s;
+$animationColor: rgb(135, 135, 228); //rgb(157, 212, 248); //rgb(51, 51, 250);
+$errorColor: #FC3251;
+$errorColorDark:black;
+$animationColorError: #FC3251;
+
+.input-text__elem {
+	margin-bottom: 40px;
+	position: relative;
+	z-index:1;
+
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+	
+	input {
+		height: 38px;
+		position:relative;
+		z-index:1;
+		width:100%;
+		font-family: "Open Sans";
+		font-size: 15px;
+		line-height: 20px;
+		border-radius: 2px;
+		background-color: #FFFFFF;
+		padding-left:10px;
+		font-weight:100;
+		border: 1px solid #bebebe;
+		transition: all .2s ease-in-out;
+
+		&.invalid {
+			animation: shake .5s linear;
+			-webkit-animation: shake .5s linear;
+		}
+
+		&::placeholder {
+			opacity: 0.5;	
+			color: #222222;
+			font-weight:100;
+		}
+
+		&:placeholder-shown {
+			border: 1px solid #bebebe;
+		}
+		
+		&:focus{
+			outline: none;
+			color: #222222;
+
+			& ~ span.icon img {
+				transform: rotateY( 360deg );
+			}
+
+			& ~ .focus-border-onfocus:before,
+			& ~ .focus-border-onfocus:after {
+				content: ""; 
+				position: absolute; 
+				z-index:1;
+				top: 0; 
+				left: 0; 
+				width: 100%; 
+				height: 1px; 
+				background-color: #222;
+			}
+
+			& ~ .focus-border-onfocus:after{
+				top: auto; 
+				bottom: 0; 
+				left: 0; 
+			}
+
+			& ~ .focus-border i:first-child:before,
+			& ~ .focus-border i:first-child:after{
+				height: 100%; 
+				transition: 0.4s;
+				transition-delay:$animationLength;
+			}
+		}
+
+		//shortens input box width if icon exists
+		//&:focus.has-icon,
+		//&:not([value=""]):not(:focus).has-icon {
+			//width: calc(100% - 50px);
+			//min-width: calc(100% - 50px);
+		//}
+
+		&:not([value=""]):not(:focus) ~ span.icon:after {
+			content:'';
+			position:absolute;
+			border-radius: 0 2px 2px 0;
+			border:1px solid #bebebe;
+			height: 36px;
+			width: 49px;
+			right: -15px;
+			top: -9px;
+		}
+
+		&:focus ~ span.animated-placeholder,
+		&:not([value=""]):not(:focus) ~ span.animated-placeholder {
+			top: -16px;
+			font-size:12px;
+			line-height:17px;
+			left:0;
+
+			&.error-placeholder {
+				opacity:1;
+				color:$errorColor;
+			}
+		}
+
+		& ~ .focus-border:before,
+		& ~ .focus-border:after{
+			content: ""; 
+			position: absolute; 
+			z-index:2;
+			top: 0; 
+			left: var(--x); 
+			width: var(--width); 
+			height: 1px; 
+			background-color: #222;
+			animation: borderMoveBackwards $animationLength ease-out forwards; 
+			animation-delay:0.2s;
+		}
+
+		& ~ .focus-border-onfocus:before,
+		& ~ .focus-border-onfocus:after{
+			display:none;
+		}
+
+		& ~ .focus-border i:last-child:before,
+		& ~ .focus-border i:last-child:after{
+			content: ""; 
+			position: absolute; 
+			z-index:2;
+			top: 0; 
+			right: var(--width); 
+			width: 0; 
+			height: 1px; 
+			background-color: #222; 
+		}
+
+		& ~ .focus-border:after{
+			top: auto; 
+			bottom: 0; 
+			left: var(--x); 
+		}
+
+		& ~ .focus-border i:last-child:after{
+			top: auto; 
+			bottom: 0; 
+			right: var(--width); 
+		}
+
+		& ~ .focus-border i:first-child:before,
+		& ~ .focus-border i:first-child:after{
+			content: ""; 
+			position: absolute; 
+			z-index:2;
+			top: 0; 
+			left: 0; 
+			width: 1px; 
+			height: 0; 
+			background-color: #222; 
+			transition: 0.2s;
+		}
+
+		& ~ .focus-border i:first-child:after{
+			left: auto; 
+			right: 0; 
+			top: auto; 
+			bottom: 0;
+		}
+
+		& ~ .focus-border.border-move:before,
+		& ~ .focus-border.border-move:after {
+			animation: borderMove $animationLength ease-in forwards;
+		}
+
+		& ~ .focus-border i:last-child:before,
+		& ~ .focus-border i:last-child:after {
+			width: var(--x);
+			animation: borderMoveInvBackwards $animationLength ease-out forwards;
+			animation-delay:0.2s;
+		}
+
+		& ~ .focus-border.border-move i:last-child:before,
+		& ~ .focus-border.border-move i:last-child:after {
+			animation: borderMoveInv $animationLength ease-in forwards;
+		}
+
+		& ~ .focus-border-onfocus.visible:before,
+		& ~ .focus-border-onfocus.visible:after {
+			display: block !important;
+		}
+	
+		@keyframes borderMove {
+			0% {
+				width:0;
+				background-color: $animationColor;
+			}
+			50% {
+				background-color: $animationColor;
+			}
+			100% {
+				width: var(--width);
+				background-color: #222;
+			}
+		}
+
+		@keyframes borderMoveInv {
+			0% {
+				width:0;
+				background-color: $animationColor;
+			}
+			50% {
+				background-color: $animationColor;
+			}
+			100% {
+				width: var(--x);
+				background-color: #222;
+			}
+		}
+
+		@keyframes borderMoveBackwards {
+			100% {
+				width:0;
+				background-color: $animationColor;
+			}
+			30% {
+				background-color: #222;
+			}
+			0% {
+				width: var(--width);
+				background-color: #222;
+			}
+		}
+
+		@keyframes borderMoveInvBackwards {
+			100% {
+				width:0;
+				background-color: $animationColor;
+			}
+			30% {
+				background-color: #222;
+			}
+			0% {
+				width: var(--x);
+				background-color: #222;
+			}
+		}
+
+		@keyframes borderMoveError {
+			0% {
+				width:0;
+				background-color: $animationColorError;
+			}
+			50% {
+				background-color: $animationColorError;
+			}
+			100% {
+				width: var(--width);
+				background-color: $errorColorDark;
+			}
+		}
+
+		@keyframes borderMoveInvError {
+			0% {
+				width:0;
+				background-color: $animationColorError;
+			}
+			50% {
+				background-color: $animationColorError;
+			}
+			100% {
+				width: var(--x);
+				background-color: $errorColorDark;
+			}
+		}
+
+		@keyframes borderMoveBackwardsError {
+			100% {
+				width:0;
+				background-color: $animationColorError;
+			}
+			30% {
+				background-color: $errorColorDark;
+			}
+			0% {
+				width: var(--width);
+				background-color: $errorColorDark;
+			}
+		}
+
+		@keyframes borderMoveInvBackwardsError {
+			100% {
+				width:0;
+				background-color: $animationColorError;
+			}
+			30% {
+				background-color: $errorColorDark;
+			}
+			0% {
+				width: var(--x);
+				background-color: $errorColorDark;
+			}
+		}
+		
+		&:disabled {
+			background-color: #efefef;
+			opacity: 0.5;	
+			color: #222222;
+		}
+
+		&:required {
+			outline: none;
+			box-shadow:none;
+		}
+		
+		&.error {
+			border: 1px solid $errorColor;
+
+			& ~ .focus-border:before,
+			& ~ .focus-border:after {
+				background-color:$errorColorDark;
+				animation: borderMoveBackwardsError $animationLength ease-out forwards; 
+				animation-delay:0.2s;
+			}
+
+			& ~ .focus-border i:first-child:before,
+			& ~ .focus-border i:first-child:after{ 
+				background-color:$errorColorDark;
+			}
+
+			&:focus ~ .focus-border i:first-child:before,
+			&:focus ~ .focus-border i:first-child:after{
+				background-color:$errorColorDark;
+			}
+
+			& ~ .focus-border.border-move:before,
+			& ~ .focus-border.border-move:after {
+				animation: borderMoveError $animationLength ease-in forwards;
+			}
+
+			& ~ .focus-border i:last-child:before,
+			& ~ .focus-border i:last-child:after {
+				animation: borderMoveInvBackwardsError $animationLength ease-out forwards;
+				animation-delay:0.2s;
+				background-color: $errorColorDark;
+			}
+
+			& ~ .focus-border.border-move i:last-child:before,
+			& ~ .focus-border.border-move i:last-child:after {
+				animation: borderMoveInvError $animationLength ease-in forwards;
+			}
+
+			&:focus ~ .focus-border-onfocus:before,
+			&:focus ~ .focus-border-onfocus:after {
+				background-color: $errorColorDark !important;
+			}
+		}
+	}
+	
+	label {
+		position: absolute;
+		top: -16px;
+		font-size:12px;
+		line-height:17px;
+		opacity: 0.5;	
+		color: #333;
+		display:block;
+		font-weight:100;
+		letter-spacing: .25px;
+		margin-bottom: 1px;
+
+		&.error {
+			opacity:.75;
+			color: $errorColor;
+		}
+	}
+	
+	span.error {
+		position: absolute;
+		z-index:2;
+		display:block;
+		font-size: 10px;	
+		font-weight: 300;	
+		line-height: 14px;	
+		text-align: right;
+		color:$errorColor;
+		letter-spacing: .3px;
+		margin-top:2px;
+		right: 0;
+	}
+
+	span.animated-placeholder {
+		position: absolute;
+		z-index:2;
+		pointer-events: none;
+		left: 10px;
+		top: 9px;
+		transition: 0.2s ease all;
+		opacity: 0.5;	
+		color: #222222;
+		font-weight:100;
+		font-size: 15px;
+		line-height: 20px;
+		font-family: "Open Sans";
+		white-space: nowrap;
+		max-width:93%;
+		overflow:hidden;
+	}
+
+	span.icon {
+		position: absolute;
+		right:15px;
+		top:9px;
+
+		img {
+			width:20px;
+			height:20px;
+			opacity:1;
+			transition: .2s opacity ease, transform 1s;
+			position:relative;
+			z-index:2;
+			transform-style: preserve-3d;
+
+			&:hover {
+				cursor: pointer;
+				opacity:.5;
+			}
+		}
+	}
+
+	&.inline {
+		display: inline-block;
+	}
+
+	&.inline:not(:last-child) {
+		margin-right:20px;
+	}
+	
+	@keyframes shake {
+		8%, 41% {
+			transform: translateX(-10px);
+		}
+		25%, 58% {
+			transform: translateX(10px);
+		}
+		75% {
+			transform: translateX(-5px);
+		}
+		92% {
+			transform: translateX(5px);
+		}
+		0%, 100% {
+			transform: translateX(0);
+		}
+	}
+
+	&:after {
+		content:'';
+		position:absolute;
+		background:#f4f6f9;
+		top:1px;
+		right:1px;
+		height:36px;
+		width:50px;
+		z-index:0;
+	}
+}
+
+.input-text__elem:first-child {
+	margin-top: 20px !important;
+}
+
+.input-text__elem:last-child {
+	margin-bottom: 0 !important;
+}
+

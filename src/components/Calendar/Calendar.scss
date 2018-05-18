@@ -1,0 +1,130 @@
+$dayMargin: 1px;
+$dayWidth: 36px;
+$dayHeight: $dayWidth;
+$dayWidthWithMargin: $dayWidth + $dayMargin * 2;
+$colorDayDisabledBg: rgba(34, 34, 34, 0.07);
+$colorDayDisabledText: rgba(34, 34, 34, 0.3);
+$dayBorderRadius: 2px;
+$colorAccent: #4a90e2;
+$colorLabelWeekend: $colorAccent;
+$colorText: #222222;
+$colorDaySelected: $colorAccent;
+
+.Calendar {
+  align-items: center;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  justify-content: center;
+  position: relative;
+  width: 7 * $dayWidth;
+}
+
+.Calendar:nth-child(even) {
+  margin-top: 20px;
+}
+
+@media only screen and (min-width: 584px) {
+  .Calendar:nth-child(even) {
+    margin-top: 0;
+    margin-left: 20px;
+  }
+}
+
+.Calendar-incrementor {
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  display: none;
+  font-size: 10px;
+  left: 6px;
+  padding: 2px;
+  position: absolute;
+  top: 4px;
+}
+
+.Calendar-incrementor--forward {
+  left: auto;
+  right: 6px;
+}
+
+.Calendar-incrementor.is-firstCalendar,
+.Calendar-incrementor.is-onlyCalendar {
+  display: inline-block;
+}
+
+@media only screen and (min-width: 584px) {
+  .Calendar-incrementor,
+  .Calendar-incrementor.is-firstCalendar {
+    display: none;
+  }
+
+  .Calendar-incrementor.is-onlyCalendar,
+  .Calendar-incrementor.is-leftAndBefore,
+  .Calendar-incrementor.is-rightAndAfter {
+    display: inline-block;
+  }
+}
+
+.Calendar-name {
+  font-family: "Open Sans";
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.Calendar-labels {
+  align-items: center;
+  display: flex;
+  height: $dayHeight;
+  justify-content: center;
+  width: 100%;
+}
+
+.Calendar-label {
+  align-items: center;
+  color: $colorText;
+  display: flex;
+  font-family: "Open Sans";
+  font-size: 11px;
+  font-weight: bold;
+  height: $dayHeight;
+  justify-content: center;
+  margin: $dayMargin;
+  width: $dayWidth;
+}
+
+.Calendar-label--weekend {
+  color: $colorLabelWeekend;
+}
+
+.Calendar-row {
+  display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.MonthNavigator {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: calc(100% - 10px);
+}
+
+.MonthNavigator-navButton {
+  background-color: #fff;
+  border: none;
+  font-size: 10px;
+  padding: 2px;
+}
+
+.MonthNavigator-icon.MonthNavigator-icon {
+  font-size: 20px;
+  color: #4a90e2;
+}
+
+.MonthTitle {
+  font-family: "Open Sans";
+  font-size: 24px;
+  font-weight: 300;
+}

@@ -1,0 +1,22 @@
+.DatePicker {
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  position: relative; }
+
+.DatePicker * {
+  box-sizing: border-box; }
+
+.DatePicker-dropdown {
+  background-color: #fff;
+  padding: 20px;
+  width: 292px; }
+
+.DatePicker-calendars {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+
+@media only screen and (min-width: 584px) {
+  .DatePicker-dropdown:not(.is-singleCalendarOnly) {
+    width: 564px; } }

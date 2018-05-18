@@ -1,0 +1,86 @@
+.CalendarDay {
+  background-color: transparent;
+  border: none;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  cursor: pointer;
+  display: flex;
+  height: 38px;
+  padding: 0;
+  position: relative;
+  width: 36px; }
+
+.CalendarDay:disabled {
+  background-color: rgba(34, 34, 34, 0.07);
+  border-left: 1px solid #fff;
+  border-radius: 2px;
+  border-right: 1px solid #fff;
+  color: rgba(34, 34, 34, 0.3);
+  cursor: default; }
+
+.CalendarDay:focus {
+  outline: none; }
+
+.CalendarDay--hovered {
+  z-index: 2; }
+
+.CalendarDay--rangeStart::before,
+.CalendarDay--rangeEnd::before {
+  position: absolute;
+  content: '';
+  background-color: #4a90e2;
+  height: 36px;
+  right: 0;
+  width: 36px;
+  z-index: 1;
+  border-radius: 2px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0; }
+
+.CalendarDay--rangeEnd::before {
+  left: 0;
+  right: auto;
+  border-radius: 2px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0; }
+
+.CalendarDay--rangeMiddle {
+  background-color: #4a90e2; }
+
+.CalendarDay--padding {
+  height: 38px;
+  width: 36px;
+  cursor: default; }
+
+.CalendarDay-content {
+  align-items: center;
+  border-radius: 2px;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  width: 36px;
+  z-index: 1; }
+
+.CalendarDay-content--hovered {
+  box-shadow: 0 0 0 2px #2a5280; }
+
+.CalendarDay-content--rangeStart,
+.CalendarDay-content--rangeMiddle,
+.CalendarDay-content--rangeEnd {
+  background-color: #4a90e2;
+  color: #fff; }
+
+.CalendarDay-content.is-today {
+  color: #4a90e2;
+  font-weight: bold;
+  text-decoration: underline; }
+
+.CalendarDay-content--rangeStart.is-today,
+.CalendarDay-content--rangeMiddle.is-today,
+.CalendarDay-content--rangeEnd.is-today,
+.CalendarDay-content--chosen.is-today {
+  color: #fff; }
+
+.CalendarDay-content--chosen {
+  background-color: #4a90e2;
+  color: #fff; }
